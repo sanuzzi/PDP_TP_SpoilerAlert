@@ -106,13 +106,14 @@ esFuerte(Serie,Temporada):- pasó(Serie, Temporada, _, relación(amorosa, _, _))
 vieneZafando(Persona, Serie):-
 	leInteresa(Persona, Serie),
 	not(leSpoileo(_, Persona, Serie)),
+	estáZarpada(Serie).
+
+% Sacar esto de abajo, y hacer lo de estáZarpada con los 2 casos
+estáZarpada(Serie) :-
   	temporadas(Serie,Temporada),
 	forall(temporadas(Serie, Temporada), esFuerte(Serie,Temporada)).
 
-vieneZafando(Persona, Serie):-
-	leInteresa(Persona, Serie),
-	not(leSpoileo(_, Persona, Serie)),
-	esPopular(Serie).
+estáZarpada(Serie) :- esPopular(Serie).
 
 :- begin_tests(punto6_vieneZafando).
 
